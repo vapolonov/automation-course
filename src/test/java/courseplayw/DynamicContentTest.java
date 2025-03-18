@@ -33,6 +33,6 @@ class DynamicContentTest {
 
     @Test
     void testDynamicLoading() {
-       //Ваш код тут...
+
     }
 }
