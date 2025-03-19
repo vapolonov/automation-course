@@ -26,10 +26,6 @@ public class DynamicContentTest {
         page = context.newPage();
     }
 
-    @AfterEach
-    void tearDown() {
-        playwright.close();
-    }
 
     @Test
     void testDynamicLoading() {
@@ -67,5 +63,10 @@ public class DynamicContentTest {
                     .setPath(Paths.get("dynamic-loading-error.png")));
             throw e;
         }
+    }
+
+    @AfterEach
+    void tearDown() {
+        playwright.close();
     }
 }
