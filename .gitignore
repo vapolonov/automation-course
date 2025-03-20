@@ -39,3 +39,8 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Results.png ###
+.search_results.png
+**/search_results.png
+/search_results.png
