@@ -48,9 +48,7 @@ public class StatusCodeInterceptionTest {
     // Проверка мок-текста
     Locator text = page.locator("h3");
     text.waitFor(new Locator.WaitForOptions()
-        .setState(WaitForSelectorState.VISIBLE)
-        .setTimeout(3000)
-    );
+        .setState(WaitForSelectorState.VISIBLE));
     assertEquals("Mocked Success Response", text.textContent());
   }
 
