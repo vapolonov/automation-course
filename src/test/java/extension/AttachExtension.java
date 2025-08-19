@@ -33,7 +33,6 @@ public class AttachExtension implements
   }
 
   private void attachVideo(Page page) {
-
     try {
       if (page.video() != null) {
         Path videoPath = page.video().path();
