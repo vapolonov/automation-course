@@ -3,7 +3,6 @@ package base;
 import com.microsoft.playwright.*;
 import org.junit.jupiter.api.*;
 
-import java.nio.file.Files;
 import java.nio.file.Paths;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -25,6 +24,7 @@ public class BaseTest {
   @BeforeEach
   void setUp() {
     this.context = browser.newContext(new Browser.NewContextOptions()
+        .setViewportSize(1280, 720)
         .setRecordVideoDir(Paths.get("videos/"))
         .setRecordVideoSize(1280, 720));
     page = this.context.newPage();
