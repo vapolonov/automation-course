@@ -5,6 +5,10 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: [ chromium, firefox, webkit ]
+      fail-fast: false
 
     steps:
       - uses: actions/checkout@v4
