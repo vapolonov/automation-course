@@ -5,6 +5,7 @@ import io.qameta.allure.Allure;
 import org.junit.jupiter.api.extension.*;
 
 import java.io.ByteArrayInputStream;
+import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -19,7 +20,9 @@ public class AttachExtension implements
   private Page getPageFromTestInstance(ExtensionContext context) {
     Object testInstance = context.getRequiredTestInstance();
     try {
-      return (Page) testInstance.getClass().getField("page").get(testInstance);
+      Field field = testInstance.getClass().getDeclaredField("page");
+      field.setAccessible(true);
+      return (Page) field.get(testInstance);
     } catch (Exception e) {
       throw new RuntimeException("Не удалось получить поле 'page' из теста", e);
     }
