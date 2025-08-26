@@ -14,8 +14,8 @@ import org.junit.jupiter.api.extension.TestWatcher;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@Epic("Изучение Playwright Java")
 @WebTest
+@Epic("Изучение Playwright Java")
 public class CheckboxesTest {
   private Playwright playwright;
   private Browser browser;
@@ -62,14 +62,14 @@ public class CheckboxesTest {
 
   @Step("Проверка состояния чекбоксов")
   private void verifyToggledState() {
-    assertTrue(page.locator(CHECKBOXES).nth(0).isChecked());
+    assertTrue(page.locator(CHECKBOXES).nth(1).isChecked());
     assertFalse(page.locator(CHECKBOXES).nth(1).isChecked());
   }
 
   @Step("Изменение состояния чекбоксов")
   private void toggleCheckboxes() {
-    page.locator(CHECKBOXES).nth(0).click();
-    page.locator(CHECKBOXES).nth(1).click();
+    page.locator(CHECKBOXES).nth(0).check();
+    page.locator(CHECKBOXES).nth(1).uncheck();
   }
 
   @AfterEach
