@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class testDynamicLoadingWithTrace {
+public class DynamicLoadingTraceTest {
   Playwright playwright;
   Browser browser;
   BrowserContext context;
@@ -37,7 +37,6 @@ public class testDynamicLoadingWithTrace {
     Allure.step("Нажать на кнопку 'Start'", () ->{
       page.click("button");
     });
-
 
     Allure.step("Проверить текст после загрузки элемента", () -> {
       page.locator("#finish").waitFor();
