@@ -62,7 +62,7 @@ public class CheckboxesTest {
 
   @Step("Проверка состояния чекбоксов")
   private void verifyToggledState() {
-    assertTrue(page.locator(CHECKBOXES).nth(1).isChecked());
+    assertTrue(page.locator(CHECKBOXES).nth(0).isChecked());
     assertFalse(page.locator(CHECKBOXES).nth(1).isChecked());
   }
 
