@@ -93,11 +93,11 @@ public class AdvancedReportingTest {
         });
       });
 
-// Так не работает т.к. Allure.step внутри себя ловит исключение и AttachExtension уже не видит исключение
-// (оно не "долетает" до JUnit lifecycle)
-//      Allure.step("Проверить текст после закрытия алерта", () -> {
-//        assertEquals("You successfully clicked an aler", page.locator("#result").textContent());
-//      });
+    // Так не работает т.к. Allure.step внутри себя ловит исключение и AttachExtension уже не видит исключение
+    // (оно не "долетает" до JUnit lifecycle)
+    //      Allure.step("Проверить текст после закрытия алерта", () -> {
+    //        assertEquals("You successfully clicked an aler", page.locator("#result").textContent());
+    //      });
       Allure.step("Проверить текст после закрытия алерта");
       softly.assertThat(page.locator("#result").textContent())
           .isEqualTo("You successfully clicked an alert");
