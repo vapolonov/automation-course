@@ -26,6 +26,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jsonSchemaValidator.version>5.5.6</jsonSchemaValidator.version>
     </properties>
 
     <dependencies>
@@ -94,6 +95,11 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-databind.version}</version>
         </dependency>
+      <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>json-schema-validator</artifactId>
+      <version>${jsonSchemaValidator.version}</version>
+    </dependency>
     </dependencies>
 
     <build>
