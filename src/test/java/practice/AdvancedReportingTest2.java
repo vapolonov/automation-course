@@ -44,7 +44,7 @@ public class AdvancedReportingTest2 {
   @BeforeEach
   void setUp(TestInfo testInfo) {
     playwright = Playwright.create();
-    browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+    browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
     page = browser.newPage();
     test = extent.createTest(testInfo.getDisplayName());
     logExtent(Status.INFO, "Браузер запущен");

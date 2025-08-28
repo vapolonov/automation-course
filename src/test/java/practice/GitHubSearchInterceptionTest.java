@@ -17,7 +17,7 @@ public class GitHubSearchInterceptionTest {
   @BeforeEach
   void setUp() {
     playwright = Playwright.create();
-    browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+    browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
     context = browser.newContext();
     page = browser.newPage();
 
@@ -41,7 +41,8 @@ public class GitHubSearchInterceptionTest {
     page.navigate("https://github.com/search?q=java");
 
     // Ожидаем появления результатов
-    page.locator("[data-testid='results-list']").first().waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
+    page.locator("[data-testid='results-list']").first()
+        .waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
 
     // Проверяем модифицированный запрос в UI
     // String searchValue = page.locator("input[name='q'][type='text']").inputValue();
