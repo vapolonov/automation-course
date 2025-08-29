@@ -69,8 +69,8 @@ public class MobileDragAndDropTest {
 
   @AfterEach
   void tearDown() {
-    context.close();
-    browser.close();
-    playwright.close();
+    if (context != null) context.close();
+    if (browser != null) browser.close();
+    if (playwright != null) playwright.close();
   }
 }
