@@ -27,6 +27,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jsonSchemaValidator.version>5.5.6</jsonSchemaValidator.version>
+      <guice.version>7.0.0</guice.version>
     </properties>
 
     <dependencies>
@@ -96,10 +97,15 @@
             <version>${jackson-databind.version}</version>
         </dependency>
       <dependency>
-      <groupId>io.rest-assured</groupId>
-      <artifactId>json-schema-validator</artifactId>
-      <version>${jsonSchemaValidator.version}</version>
-    </dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>json-schema-validator</artifactId>
+        <version>${jsonSchemaValidator.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.inject</groupId>
+        <artifactId>guice</artifactId>
+        <version>${guice.version}</version>
+      </dependency>
     </dependencies>
 
     <build>
