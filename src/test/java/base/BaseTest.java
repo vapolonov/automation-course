@@ -13,6 +13,12 @@ public class BaseTest {
   protected BrowserContext context;
   public Page page;
 
+  static {
+    if (System.getProperty("env") == null) {
+      System.setProperty("env", "dev");
+    }
+  }
+
   @BeforeAll
   void setUpAll() {
     playwright = Playwright.create();
