@@ -11,7 +11,8 @@ public class BaseTest {
   protected Playwright playwright;
   protected Browser browser;
   protected BrowserContext context;
-  public Page page;
+  protected Page page;
+  protected APIRequestContext apiRequest;
 
   static {
     if (System.getProperty("env") == null) {
@@ -33,17 +34,27 @@ public class BaseTest {
         .setViewportSize(1280, 720)
         .setRecordVideoDir(Paths.get("videos/"))
         .setRecordVideoSize(1280, 720));
+    String baseUrl = getBaseUrl();
+    apiRequest = playwright.request().newContext(
+            new APIRequest.NewContextOptions()
+                    .setBaseURL(baseUrl)
+    );
     page = this.context.newPage();
   }
 
   @AfterEach
   void tearDown() {
     context.close();
+    apiRequest.dispose();
   }
 
   @AfterAll
   void tearDownAll() {
     browser.close();
     playwright.close();
+  }
+
+  protected String getBaseUrl() {
+    return "https://the-internet.herokuapp.com";
   }
 }
