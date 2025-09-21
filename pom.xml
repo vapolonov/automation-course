@@ -27,7 +27,9 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jsonSchemaValidator.version>5.5.6</jsonSchemaValidator.version>
-      <guice.version>7.0.0</guice.version>
+        <sql.connector.version>9.4.0</sql.connector.version>
+        <guice.version>7.0.0</guice.version>
+        <postgresql.version>42.7.8</postgresql.version>
     </properties>
 
     <dependencies>
@@ -105,6 +107,16 @@
         <groupId>com.google.inject</groupId>
         <artifactId>guice</artifactId>
         <version>${guice.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>${sql.connector.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>${postgresql.version}</version>
       </dependency>
     </dependencies>
 
