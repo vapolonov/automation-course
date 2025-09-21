@@ -5,6 +5,8 @@ import org.junit.jupiter.api.*;
 
 import java.nio.file.Paths;
 
+import static config.Env.env;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BaseTest {
 
@@ -34,10 +36,9 @@ public class BaseTest {
         .setViewportSize(1280, 720)
         .setRecordVideoDir(Paths.get("videos/"))
         .setRecordVideoSize(1280, 720));
-    String baseUrl = getBaseUrl();
     apiRequest = playwright.request().newContext(
             new APIRequest.NewContextOptions()
-                    .setBaseURL(baseUrl)
+                    .setBaseURL(env.getBaseUrl())
     );
     page = this.context.newPage();
   }
@@ -52,9 +53,5 @@ public class BaseTest {
   void tearDownAll() {
     browser.close();
     playwright.close();
-  }
-
-  protected String getBaseUrl() {
-    return "https://the-internet.herokuapp.com";
   }
 }
