@@ -3,12 +3,12 @@ package tests;
 import base.BaseTest;
 import com.microsoft.playwright.APIResponse;
 import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Response;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
+import java.nio.file.Paths;
 import static config.Env.env;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StatusCodeCombinedTest extends BaseTest {
@@ -17,22 +17,23 @@ public class StatusCodeCombinedTest extends BaseTest {
   @ValueSource(ints = {200, 404})
   void testStatusCodeCombined(int statusCode) {
     // API проверка
-    int apiCode = getApiStatusCode(statusCode);
-    assertThat(apiCode).isEqualTo(statusCode);
+    int apiStatusCode = getApiStatusCode(statusCode);
+    assertEquals(statusCode, apiStatusCode,
+                "API вернул неверный статус-код для " + statusCode);
 
     // UI проверка
-    int uiCode = getUiStatusCode(statusCode);
-    assertThat(uiCode).isEqualTo(statusCode);
+    int uiStatusCode = getUiStatusCode(statusCode);
+    assertEquals(statusCode, uiStatusCode,
+                "UI вернул неверный статус-код для " + statusCode);
 
     // Сравнение результатов
-    assertEquals(apiCode, uiCode, "API и UI статус коды не равны");
-
+    assertEquals(apiStatusCode, uiStatusCode,
+                String.format("Статус-коды не совпадают для кода %d. API: %d, UI: %d",
+                        statusCode, apiStatusCode, uiStatusCode));
   }
 
   private int getApiStatusCode(int code) {
     APIResponse response = apiRequest.get("/status_codes/" + code);
-    assertEquals(code, response.status(),
-        "API: Неверный статус код для " + code);
     return response.status();
   }
 
@@ -57,9 +58,21 @@ public class StatusCodeCombinedTest extends BaseTest {
 
     } catch (Exception e) {
       // Скриншот с именем, включающим код ошибки
-      //Ваш код...
+      takeScreenshot("error_code_" + code);
       throw new RuntimeException("UI проверка упала для кода " + code, e);
     }
   }
+
+  private void takeScreenshot(String prefix) {
+        try {
+            String screenshotName = String.format("screenshots/%s.png", prefix);
+            page.screenshot(new Page.ScreenshotOptions()
+                    .setPath(Paths.get(screenshotName))
+                    .setFullPage(true));
+            System.out.println("Скриншот сохранен: " + screenshotName);
+        } catch (Exception e) {
+            System.err.println("Не удалось сохранить скриншот: " + e.getMessage());
+        }
+    }
 
 }

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@TestInstance(TestInstance.Lifecycle.PER_METHOD) // новый экземпляр на каждый тест
 @Execution(ExecutionMode.CONCURRENT)
 public class ParallelTests {
 
