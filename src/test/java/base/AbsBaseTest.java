@@ -21,7 +21,7 @@ public abstract class AbsBaseTest {
   void globalSetup() {
     playwright = Playwright.create();
     browser = playwright.chromium()
-        .launch(new BrowserType.LaunchOptions().setHeadless(false));
+        .launch(new BrowserType.LaunchOptions().setHeadless(true));
     System.out.println(">>> Browser started");
   }
 
