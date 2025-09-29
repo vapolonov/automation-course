@@ -30,6 +30,8 @@
         <sql.connector.version>9.4.0</sql.connector.version>
         <guice.version>7.0.0</guice.version>
         <postgresql.version>42.7.8</postgresql.version>
+      <mockito.version>5.20.0</mockito.version>
+      <mockito.junit.version>5.20.0</mockito.junit.version>
     </properties>
 
     <dependencies>
@@ -117,6 +119,18 @@
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
         <version>${postgresql.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>${mockito.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-junit-jupiter</artifactId>
+        <version>${mockito.junit.version}</version>
+        <scope>test</scope>
       </dependency>
     </dependencies>
 
