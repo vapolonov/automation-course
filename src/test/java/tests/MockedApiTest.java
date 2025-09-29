@@ -28,11 +28,9 @@ public class MockedApiTest extends BaseTest {
   void testUserProfileWithMockedApi() {
     // Используем мок вместо реального API
     String userData = apiService.fetchUserData();
-
     // Передаем данные в браузер
     page.navigate("https://the-internet.herokuapp.com/dynamic_content");
     page.evaluate("(data) => { window.userData = data; }", userData);
-
     // Проверяем, что данные корректно обрабатываются
     Object result = page.evaluate("() => window.userData");
     assertNotNull(result);
