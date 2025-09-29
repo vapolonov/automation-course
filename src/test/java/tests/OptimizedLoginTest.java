@@ -1,12 +1,16 @@
 package tests;
-
 import com.microsoft.playwright.*;
-import org.junit.jupiter.api.*;
+import com.microsoft.playwright.options.Cookie;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import java.util.List;
 
 public class OptimizedLoginTest {
   static Playwright playwright;
   static Browser browser;
-  static String authToken;
+  static List<Cookie> allCookies;
 
   @BeforeAll
   static void globalSetup() {
@@ -18,18 +22,21 @@ public class OptimizedLoginTest {
     page.locator("#username").fill("tomsmith");
     page.locator("#password").fill("SuperSecretPassword!");
     page.locator("button[type='submit']").click();
-    authToken = page.evaluate("localStorage.getItem('authToken')").toString();
+    // Сохраняем все cookies
+    allCookies = page.context().cookies();
     page.close();
   }
 
   @Test
   void testDashboard() {
     BrowserContext context = browser.newContext();
-    // Устанавливаем токен в новый контекст
-    context.addInitScript("localStorage.setItem('authToken', '" + authToken + "')");
+    context.addCookies(allCookies);
     Page page = context.newPage();
-    page.navigate("https://the-internet.herokuapp.com/dashboard");
-    Assertions.assertTrue(page.locator(".welcome-message").isVisible());
+    page.navigate("https://the-internet.herokuapp.com/secure");
+    Assertions.assertTrue(page.url().contains("/secure"));
+    Assertions.assertTrue(page.locator("h2").isVisible());
+    Assertions.assertTrue(page.locator("h2").textContent().equals(" Secure Area"));
+    Assertions.assertTrue(page.locator("text=Welcome to the Secure Area").isVisible());
     context.close();
   }
 
