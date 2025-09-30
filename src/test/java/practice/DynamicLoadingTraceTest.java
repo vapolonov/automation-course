@@ -45,7 +45,7 @@ public class DynamicLoadingTraceTest {
 
     // Сохранение трассировки
     context.tracing().stop(new Tracing.StopOptions()
-        .setPath(Paths.get("trace-dynamic-loading.zip")));
+        .setPath(Paths.get("trace/trace-dynamic-loading.zip")));
   }
 
   @AfterEach
