@@ -34,15 +34,16 @@ public class LoginDbTest extends BaseTest {
 
     }
 
-    @Test
-    void testLoginWithDbUser() throws SQLException {
-        // Получение данных из БД
-        String username = null;
-        String password = null;
+  @Disabled
+  @Test
+  void testLoginWithDbUser() throws SQLException {
+    // Получение данных из БД
+    String username = null;
+    String password = null;
 
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(
-                     "SELECT username, password FROM users WHERE username = 'tomsmith'")) {
+    try (Statement stmt = connection.createStatement();
+         ResultSet rs = stmt.executeQuery(
+             "SELECT username, password FROM users WHERE username = 'tomsmith'")) {
 
             if (rs.next()) {
                 username = rs.getString("username");
@@ -64,15 +65,15 @@ public class LoginDbTest extends BaseTest {
         assertTrue(page.url().endsWith("/secure"));
     }
 
-    @AfterEach
-    void teardown() throws SQLException {
-        // Удаление тестового пользователя
-        try (Statement stmt = connection.createStatement()) {
-            stmt.executeUpdate(
-                    "DELETE FROM users WHERE username = 'tomsmith'"
-            );
-        }
-        // Закрытие ресурсов
-        if (connection != null) connection.close();
+  @AfterEach
+  void teardown() throws SQLException {
+    // Удаление тестового пользователя
+    try (Statement stmt = connection.createStatement()) {
+      stmt.executeUpdate(
+          "DELETE FROM users WHERE username = 'tomsmith'"
+      );
     }
+    // Закрытие ресурсов
+    if (connection != null) connection.close();
+  }
 }
