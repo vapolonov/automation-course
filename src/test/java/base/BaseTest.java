@@ -40,7 +40,7 @@ public class BaseTest {
             new APIRequest.NewContextOptions()
                     .setBaseURL(env.getBaseUrl())
     );
-    page = this.context.newPage();
+    page = context.newPage();
   }
 
   @AfterEach
