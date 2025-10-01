@@ -32,6 +32,7 @@
         <postgresql.version>42.7.8</postgresql.version>
       <mockito.version>5.20.0</mockito.version>
       <mockito.junit.version>5.20.0</mockito.junit.version>
+      <lombok.version>1.18.42</lombok.version>
     </properties>
 
     <dependencies>
@@ -131,6 +132,11 @@
         <artifactId>mockito-junit-jupiter</artifactId>
         <version>${mockito.junit.version}</version>
         <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
       </dependency>
     </dependencies>
 
