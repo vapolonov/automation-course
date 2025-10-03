@@ -7,11 +7,25 @@ import pages.LoginPage;
 
 import static config.Env.env;
 
+/**
+ * Параметризованный тест проверяет авторизацию на сайте:
+ * 1. Авторизация с корректным логином и паролем
+ * 2. Авторизация с некорректным логином
+ * 3. Авторизация с некорректным паролем
+ */
 public class ParametrizedLoginTest extends AbsBaseTest {
 
   @Inject
   private LoginPage loginPage;
 
+  /**
+   *
+   * @param username - логин
+   * @param password - пароль
+   * @param description - описание, что проверяем
+   * @param path - endpoint страницы
+   * @param message - сообщение об ошибке
+   */
   @ParameterizedTest
   @CsvSource({
       "tomsmith, SuperSecretPassword!, Assert successful login, /secure, You logged into a secure area!",
