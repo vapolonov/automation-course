@@ -13,6 +13,12 @@ public abstract class AbsBaseTest {
   private Browser browser;
   private Injector injector;
 
+  static {
+    if (System.getProperty("env") == null) {
+      System.setProperty("env", "dev");
+    }
+  }
+
   // ThreadLocal гарантирует изоляцию page/context для каждого потока
   private final ThreadLocal<BrowserContext> threadLocalContext = new ThreadLocal<>();
   private final ThreadLocal<Page> threadLocalPage = new ThreadLocal<>();

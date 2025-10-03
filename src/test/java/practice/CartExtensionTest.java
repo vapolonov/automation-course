@@ -3,11 +3,11 @@ package practice;
 import base.BaseTest;
 import extension.WebTest;
 import io.qameta.allure.Allure;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@WebTest
 public class CartExtensionTest extends BaseTest {
 
   @Test
