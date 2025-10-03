@@ -19,7 +19,7 @@ public class LoginPage extends AbsBasePage {
     page.locator("button[type='submit']").click();
   }
 
-  @Step("Заполнить форму авторизации")
+  @Step("Проверить результат авторизации")
   public void assertAuthorization(String description, String path, String message) {
     assertAll(description,
         () -> assertTrue(page.url().contains(path)),
