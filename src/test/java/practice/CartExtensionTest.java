@@ -1,12 +1,13 @@
 package practice;
 
 import base.BaseTest;
-import extension.WebTest;
+import com.microsoft.playwright.options.LoadState;
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CartExtensionTest extends BaseTest {
 
@@ -25,10 +26,14 @@ public class CartExtensionTest extends BaseTest {
     });
   }
 
-  @Test
+  @RepeatedTest(100)
   void failTextExample() {
-    page.navigate("https://playwright.dev/");
-    String pageTitle = page.title();
-    assertEquals("Fast and reliable end-to-end testing for modern web apps | Playwright", pageTitle);
+    page.navigate("https://playwright.dev/java");
+    page.waitForLoadState(LoadState.DOMCONTENTLOADED);
+    assertTrue(page.locator("h1")
+        .textContent()
+        .contains("Playwright enables reliable end-to-end testing for modern web apps."));
+
+
   }
 }
